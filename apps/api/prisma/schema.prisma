@@ -10,12 +10,85 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Sample {
-  id        Int      @id @default(autoincrement())
-  name      String
-  code      String   @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+model User {
+  uid       String    @id @default(cuid())
+  email     String
+  password  String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+  roleId    Int
+  role      Role      @relation(fields: [roleId], references: [id])
 
-  @@map("samples") // if you want to use snake_case format
+  @@map("users")
+}
+
+model Role {
+  id        Int       @id @default(autoincrement())
+  name      String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  user User[]
+
+  @@map("roles")
+}
+
+model Event {
+  id          Int       @id @default(autoincrement())
+  name        String
+  price       Int
+  sheduleAt   DateTime  @db.DateTime()
+  location    String
+  description String
+  category    String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime?
+
+  @@map("events")
+}
+
+model Ticket {
+  uid        String    @id @default(cuid())
+  typeTicket String
+  price      Int
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  deletedAt  DateTime?
+
+  @@map("tickets")
+}
+
+model Review {
+  id        Int       @id @default(autoincrement())
+  rating    Int
+  comment   String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  @@map("reviews")
+}
+
+model Promotion {
+  id          Int      @id @default(autoincrement())
+  description String
+  discount    Int
+  startDate   DateTime @db.Date
+  endDate     DateTime @db.Date
+
+  @@map("promotions")
+}
+
+model Refferal {
+  uid         String    @id @default(cuid())
+  point       Int
+  expiredDate DateTime  @db.Date
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime?
+
+  @@map("refferals")
 }
