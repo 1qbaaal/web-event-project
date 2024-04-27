@@ -11,14 +11,19 @@ datasource db {
 }
 
 model User {
-  uid       String    @id @default(cuid())
-  email     String
-  password  String
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
-  roleId    Int
-  role      Role      @relation(fields: [roleId], references: [id])
+  uid        String    @id @default(cuid())
+  email      String
+  password   String
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  deletedAt  DateTime?
+  roleId     Int
+  role       Role      @relation(fields: [roleId], references: [id])
+  referralId String?   @unique
+  referral   Referral? @relation(fields: [referralId], references: [uid])
+  event      Event[]
+  tiket      Ticket[]
+  review     Review[]
 
   @@map("users")
 }
@@ -36,27 +41,38 @@ model Role {
 }
 
 model Event {
-  id          Int       @id @default(autoincrement())
+  id          Int         @id @default(autoincrement())
   name        String
   price       Int
-  sheduleAt   DateTime  @db.DateTime()
+  sheduleAt   DateTime    @db.DateTime()
   location    String
   description String
   category    String
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  typeEvent   String
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
   deletedAt   DateTime?
+  userId      String
+  user        User        @relation(fields: [userId], references: [uid])
+  promotion   Promotion[]
+  ticket      Ticket[]
+  review      Review[]
 
   @@map("events")
 }
 
 model Ticket {
-  uid        String    @id @default(cuid())
-  typeTicket String
-  price      Int
-  createdAt  DateTime  @default(now())
-  updatedAt  DateTime  @updatedAt
-  deletedAt  DateTime?
+  uid         String    @id @default(cuid())
+  totalTicket Int
+  typeTicket  String
+  price       Decimal   @db.Decimal(10, 2)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime?
+  eventid     Int
+  event       Event     @relation(fields: [eventid], references: [id])
+  User        User?     @relation(fields: [userUid], references: [uid])
+  userUid     String?
 
   @@map("tickets")
 }
@@ -68,6 +84,10 @@ model Review {
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
+  Event     Event?    @relation(fields: [eventId], references: [id])
+  eventId   Int?
+  User      User?     @relation(fields: [userUid], references: [uid])
+  userUid   String?
 
   @@map("reviews")
 }
@@ -78,17 +98,22 @@ model Promotion {
   discount    Int
   startDate   DateTime @db.Date
   endDate     DateTime @db.Date
+  eventId     Int
+  event       Event    @relation(fields: [eventId], references: [id])
 
   @@map("promotions")
 }
 
-model Refferal {
-  uid         String    @id @default(cuid())
-  point       Int
-  expiredDate DateTime  @db.Date
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  deletedAt   DateTime?
+model Referral {
+  uid                String    @id @default(cuid())
+  referralCode       String    @default(cuid())
+  referralUserReward Int       @default(10000)
+  referredUserReward Int       @default(10)
+  expiredDate        DateTime  @db.Date
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+  deletedAt          DateTime?
+  user               User?
 
-  @@map("refferals")
+  @@map("referrals")
 }
