@@ -44,7 +44,7 @@ model Event {
   id          Int         @id @default(autoincrement())
   name        String
   price       Int
-  sheduleAt   DateTime    @db.DateTime()
+  schedule    DateTime    @db.Date
   location    String
   description String
   category    String
@@ -62,7 +62,7 @@ model Event {
 }
 
 model Ticket {
-  uid         String    @id @default(cuid())
+  id          Int       @id @default(autoincrement())
   totalTicket Int
   typeTicket  String
   price       Decimal   @db.Decimal(10, 2)
@@ -71,8 +71,8 @@ model Ticket {
   deletedAt   DateTime?
   eventid     Int
   event       Event     @relation(fields: [eventid], references: [id])
-  User        User?     @relation(fields: [userUid], references: [uid])
-  userUid     String?
+  User        User?     @relation(fields: [userId], references: [uid])
+  userId      String?
 
   @@map("tickets")
 }
