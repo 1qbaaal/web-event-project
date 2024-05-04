@@ -57,8 +57,18 @@ model Event {
   promotion   Promotion[]
   ticket      Ticket[]
   review      Review[]
+  EventImage  EventImage?
 
   @@map("events")
+}
+
+model EventImage {
+  id      Int    @id @default(autoincrement())
+  url     String
+  eventId Int    @unique
+  event   Event  @relation(fields: [eventId], references: [id])
+
+  @@map("eventImages")
 }
 
 model Ticket {
@@ -69,8 +79,8 @@ model Ticket {
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
   deletedAt   DateTime?
-  eventid     Int
-  event       Event     @relation(fields: [eventid], references: [id])
+  eventId     Int
+  event       Event     @relation(fields: [eventId], references: [id])
   User        User?     @relation(fields: [userId], references: [uid])
   userId      String?
 
@@ -84,7 +94,7 @@ model Review {
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
-  Event     Event?    @relation(fields: [eventId], references: [id])
+  event     Event?    @relation(fields: [eventId], references: [id])
   eventId   Int?
   User      User?     @relation(fields: [userUid], references: [uid])
   userUid   String?

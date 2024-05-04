@@ -1,5 +1,8 @@
 import { createEvent } from '@/service/EventService/create';
+import { create } from 'domain';
 import { NextFunction, Request, Response } from 'express';
+import { deleteEventById } from './delete';
+import { DeletedUploadFiles } from '@/helpers/DeletedUploadFiles';
 
 export const createEventController = async (
   req: Request,
@@ -7,34 +10,21 @@ export const createEventController = async (
   next: NextFunction,
 ) => {
   try {
-    const {
-      name,
-      price,
-      schedule,
-      location,
-      description,
-      category,
-      typeEvent,
-      userId,
-    } = req.body;
+    const data = JSON.parse(req.body.data)
 
-    await createEvent({
-      name,
-      price,
-      schedule,
-      location,
-      description,
-      category,
-      typeEvent,
-      userId,
-    });
+    if(req.files){
+      const uploadedFiles = Array.isArray(req.files)? req.files : req.files['images']
 
+      await createEvent(data, uploadedFiles)
+    }
     res.status(200).send({
       error: false,
       message: 'Create Event Success!',
       data: null,
     });
   } catch (error) {
+    DeletedUploadFiles(req.files)
+
     next(error);
   }
 };

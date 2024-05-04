@@ -1,28 +1,26 @@
 import { updateEvent } from "@/service/EventService/update";
 import { NextFunction, Request, Response } from "express";
+import { DeletedUploadFiles } from "@/helpers/DeletedUploadFiles";
 
-export const updateEventResultByUserId = async(req: Request, res: Response, next: NextFunction) =>{
+export const UpdateEventAndImage = async(req: Request, res: Response, next: NextFunction) => {
   try {
-    const { name, price, schedule, location, description, category, typeEvent, userId } = req.body;
-    const { id } = req.params
-    const updateEventResult = await updateEvent({
-      id: parseInt(id)
-    },{
-      name,
-      price,
-      schedule,
-      location,
-      description,
-      category,
-      typeEvent,
-      userId
-    })
-    return res.status(200).send({
-      error: false,
-      message: 'Update Event Success!',
-      data: updateEventResult
-    })
+    const {id} = req.params
+    const data = JSON.parse(req.body.data)
+
+  if(req.files){
+    const updatedFiles = Array.isArray(req.files) ? req.files : req.files['images']
+
+    await updateEvent(data, updatedFiles, id)
+  }
+
+  res.status(200).send({
+    error: false,
+    message: 'Update Event Success!',
+    data: null
+  })
+
   } catch (error) {
+    DeletedUploadFiles(req.files)
     next(error)
   }
 }

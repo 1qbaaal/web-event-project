@@ -1,15 +1,17 @@
 import { createEventController } from '@/controllers/EventController/create';
-import { roleVerifyEO } from '@/middleware/RoleVerify';
 import { Router } from 'express';
 import { getEventByParams } from '@/controllers/EventController/get';
-import { updateEventResultByUserId } from '@/controllers/EventController/update';
+import { UpdateEventAndImage,} from '@/controllers/EventController/update';
 import { listEventById } from '@/controllers/EventController/list';
+import { deleteEventById } from '@/controllers/EventController/delete';
+import { uploader } from '@/middleware/Uploader';
 
 const router = Router();
 
-router.post('/create', roleVerifyEO, createEventController);
+router.post('/create', uploader, createEventController);
 router.get('/:id', getEventByParams);
-router.get('/', listEventById)
-router.put('/edit/:id', updateEventResultByUserId)
+router.get('/', listEventById);
+router.put('/edit/:id', uploader, UpdateEventAndImage);
+router.delete('/', deleteEventById);
 
 export default router;
