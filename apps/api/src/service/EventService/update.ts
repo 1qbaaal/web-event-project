@@ -34,6 +34,12 @@ export const updateEvent = async (data: any, images: any, id:any) =>{
       });
     });
 
+    const findEventImage = await tx.eventImage.findMany({
+      where:{
+        eventId: findEventById.id
+      }
+    })
+
     await tx.eventImage.deleteMany({
       where:{
         eventId: findEventById.id
@@ -44,6 +50,6 @@ export const updateEvent = async (data: any, images: any, id:any) =>{
       data:[...imagesToCreate]
     })
 
-    return findEventById
+    return findEventImage
   })
 }
