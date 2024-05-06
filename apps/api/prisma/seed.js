@@ -40,6 +40,22 @@ const dataRole = [
   }
 ]
 
+const dataEventCategory = [
+  {
+    category: "Music"
+  },
+  {
+    category: "Seminar"
+  },
+  {
+    category: "Festival"
+  },
+  {
+    category: "Theater"
+  },
+  
+]
+
 async function main(){
   for(let item of dataRole){
     await prisma.role.create({
@@ -48,6 +64,11 @@ async function main(){
   }
   for(let item of dataUser){
     await prisma.user.create({
+      data: item
+    })
+  }
+  for(let item of dataEventCategory){
+    await prisma.eventCategory.create({
       data: item
     })
   }
