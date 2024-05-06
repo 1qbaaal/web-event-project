@@ -17,12 +17,14 @@ export const updateEvent = async (data: any, images: any, id:any) =>{
       data:{
         name: data.name,
         price: data.price,
-        schedule: new Date(data.schedule),
+        startDate: new Date(data.startDate),
+        endDate: new Date(data.endDate),
+        startTime: new Date(),
+        endTime: new Date(),
         location: data.schedule,
         description: data.description,
-        category: data.category,
+        eventCategoryId: data.eventCategoryId,
         typeEvent: data.typeEvent,
-        userId: data.userId
       }
     })
 

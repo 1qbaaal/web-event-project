@@ -38,12 +38,14 @@ export default function CreateEventPage() {
         initialValues={{
           name: '',
           price: '',
-          schedule: '',
+          startDate: '',
+          endDate: '',
+          startTime: '',
+          endTime: '',
           location: '',
           description: '',
-          category: '',
+          eventCategoryId: '',
           typeEvent: '',
-          userId: '',
         }}
         onSubmit={(values) => {
           const fd = new FormData();
@@ -52,12 +54,14 @@ export default function CreateEventPage() {
             JSON.stringify({
               name: values.name,
               price: parseInt(values.price),
-              schedule: new Date(values.schedule),
+              startDate: new Date(values.startDate),
+              endDate: new Date(values.endDate),
+              startTime: new Date(),
+              endTime: new Date(),
               location: values.location,
               description: values.description,
-              category: values.category,
+              eventCategoryId: parseInt(values.eventCategoryId),
               typeEvent: values.typeEvent,
-              userId: values.userId,
             }),
           );
           eventPage.forEach((file) => {
@@ -71,6 +75,9 @@ export default function CreateEventPage() {
           <div className="flex flex-col items-center px-5 py-10 gap-3">
             <div className="w-[50vh]">
               <label className="form-control w-[50vh]">
+                <div>
+                  <p>REGISTER EVENT</p>
+                </div>
                 <div className="label">
                   <span className="label-text"> Event Name</span>
                 </div>
@@ -98,12 +105,51 @@ export default function CreateEventPage() {
             <div className="w-[50vh]">
               <label className="form-control w-[50vh]">
                 <div className="label">
-                  <span className="label-text">Schedule</span>
+                  <span className="label-text">Start Date</span>
                 </div>
                 <Field
-                  type="text"
-                  name="schedule"
-                  placeholder="Type Schedule"
+                  type="date"
+                  name="startDate"
+                  placeholder="Type Start Date"
+                  className="input input-bordered w-[50vh]"
+                />
+              </label>
+            </div>
+            <div className="w-[50vh]">
+              <label className="form-control w-[50vh]">
+                <div className="label">
+                  <span className="label-text">End Date</span>
+                </div>
+                <Field
+                  type="date"
+                  name="endDate"
+                  placeholder="Type End Date"
+                  className="input input-bordered w-[50vh]"
+                />
+              </label>
+            </div>
+            <div className="w-[50vh]">
+              <label className="form-control w-[50vh]">
+                <div className="label">
+                  <span className="label-text">Start Time</span>
+                </div>
+                <Field
+                  type="time"
+                  name="startTime"
+                  placeholder="Type Start Time"
+                  className="input input-bordered w-[50vh]"
+                />
+              </label>
+            </div>{' '}
+            <div className="w-[50vh]">
+              <label className="form-control w-[50vh]">
+                <div className="label">
+                  <span className="label-text">End Time</span>
+                </div>
+                <Field
+                  type="time"
+                  name="endTime"
+                  placeholder="Type End Time"
                   className="input input-bordered w-[50vh]"
                 />
               </label>
@@ -128,7 +174,7 @@ export default function CreateEventPage() {
                 </div>
                 <Field
                   type="text"
-                  name="category"
+                  name="eventCategoryId"
                   placeholder="Type Event Category"
                   className="input input-bordered w-[50vh]"
                 />
@@ -150,19 +196,6 @@ export default function CreateEventPage() {
             <div className="w-[50vh]">
               <label className="form-control w-[50vh]">
                 <div className="label">
-                  <span className="label-text">User</span>
-                </div>
-                <Field
-                  type="text"
-                  name="userId"
-                  placeholder="Type User"
-                  className="input input-bordered w-[50vh]"
-                />
-              </label>
-            </div>
-            <div className="w-[50vh]">
-              <label className="form-control w-[50vh]">
-                <div className="label">
                   <span className="label-text">Description</span>
                 </div>
                 <Field
@@ -173,7 +206,6 @@ export default function CreateEventPage() {
                 />
               </label>
             </div>
-
             <div className="w-[50vh]">
               <label className="form-control w-[50vh]">
                 <div className="label">
