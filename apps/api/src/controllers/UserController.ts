@@ -1,26 +1,35 @@
 import { HashPassword } from "@/helpers/Hashing";
 import { createUser } from "@/service/UserService";
-import { error } from "console";
 import { NextFunction, Request, Response } from "express";
-import { create } from "ts-node";
-import { isAwaitExpression } from "typescript";
 
-export const createUserAccount = async(req: Request, res: Response, next: NextFunction) =>{
-   
+export const createUserAccount = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const {email,password,roleId}= req.body;
-   const hashedPassword = await HashPassword(password)
-   const createdUser = await createUser({email, password:hashedPassword,roleId})
-  
+    const { email, password, roleId } = req.body;
+
+    // Check if required fields are provided
+    if (!email || !password || !roleId) {
+      return res.status(400).send({
+        error: true,
+        message: 'Missing required fields: email, password, roleId'
+      });
+    }
+
+    // Hash the password
+    const hashedPassword = await HashPassword({password});
+
+    // Create the user
+    const createdUser = await createUser({ email, password: hashedPassword, roleId });
+
+    // Send success response
     res.status(200).send({
       error: false,
       message: 'Create User Success!',
-      data: null
-    })
+      data: createdUser
+    });
   } catch (error) {
-    next(error)
+    // Log error
+    console.error('Error creating user:', error);
+    // Pass error to error handling middleware
+    next(error);
   }
-}
- // const { email, password, roleId } = req.body;
-    // const hashedPassword = await HashPassword{{passwords}}
-    // const createdUser = await createUser({email, passwords:hashedPassword, roleId})
+};
