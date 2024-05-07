@@ -1,4 +1,4 @@
-import { getEvent } from '@/service/EventService/get';
+import { getEvent } from '@/services/EventService/get';
 import { NextFunction, Request, Response } from 'express';
 
 export const getEventByParams = async (

@@ -1,4 +1,4 @@
-import { createPromotion } from "@/service/PromotionService/create";
+import { createPromotion } from "@/services/PromotionService/create";
 import { NextFunction, Request, Response } from "express";
 
 export const createPromotionEvent = async(req: Request, res: Response, next: NextFunction) =>{

@@ -1,4 +1,4 @@
-import { createEvent } from '@/service/EventService/create';
+import { createEvent } from '@/services/EventService/create';
 import { create } from 'domain';
 import { NextFunction, Request, Response } from 'express';
 import { deleteEventById } from './delete';

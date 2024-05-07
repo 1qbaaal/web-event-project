@@ -1,4 +1,4 @@
-import { createTicket } from "@/service/TicketService/create";
+import { createTicket } from "@/services/TicketService/create";
 import { NextFunction, Request, Response } from "express";
 
 export const TicketEventController = async(req: Request, res: Response, next: NextFunction) => {

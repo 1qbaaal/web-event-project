@@ -1,4 +1,4 @@
-import { deleteEvent } from '@/service/EventService/delete';
+import { deleteEvent } from '@/services/EventService/delete';
 import { error } from 'console';
 import { NextFunction, Request, Response } from 'express';
 

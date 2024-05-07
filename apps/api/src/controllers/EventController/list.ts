@@ -1,4 +1,4 @@
-import { listEvent } from "@/service/EventService/list";
+import { listEvent } from "@/services/EventService/list";
 import { NextFunction, Request, Response } from "express"
 
 export const listEventById = async(req: Request, res: Response, next: NextFunction) =>{
