@@ -72,142 +72,150 @@ export default function CreateEventPage() {
         }}
       >
         <Form>
-          <div className="flex flex-col items-center px-5 py-10 gap-3">
-            <div className="w-[50vh]">
-              <label className="form-control w-[50vh]">
-                <div>
-                  <p>REGISTER EVENT</p>
-                </div>
-                <div className="label">
-                  <span className="label-text"> Event Name</span>
-                </div>
-                <Field
-                  type="text"
-                  name="name"
-                  placeholder="Type Event Name"
-                  className="input input-bordered w-[50vh]"
-                />
-              </label>
+          <div className="flex flex-col items-center px-5 py-4 gap-3">
+            <div className="text-center font-bold">
+              <p>REGISTER EVENT</p>
             </div>
-            <div className="w-[50vh]">
-              <label className="form-control w-[50vh]">
-                <div className="label">
-                  <span className="label-text">Price </span>
+            <div className="flex flex-col-2 gap-10">
+              <div className="w-full">
+                <div className="w-[50vh]">
+                  <label className="form-control w-[50vh]">
+                    <div className="label pt-4">
+                      <span className="label-text"> Event Name</span>
+                    </div>
+                    <Field
+                      type="text"
+                      name="name"
+                      placeholder="Type Event Name"
+                      className="input input-bordered w-[50vh]"
+                    />
+                  </label>
                 </div>
-                <Field
-                  type="text"
-                  name="price"
-                  placeholder="Type Enter Price"
-                  className="input input-bordered w-[50vh]"
-                />
-              </label>
+                <div className="w-[50vh]">
+                  <label className="form-control w-[50vh]">
+                    <div className="label">
+                      <span className="label-text">Price </span>
+                    </div>
+                    <Field
+                      type="text"
+                      name="price"
+                      placeholder="Type Enter Price"
+                      className="input input-bordered w-[50vh]"
+                    />
+                  </label>
+                </div>
+                <div className="w-[50vh]">
+                  <label className="form-control w-[50vh]">
+                    <div className="label">
+                      <span className="label-text">Location</span>
+                    </div>
+                    <Field
+                      type="text"
+                      name="location"
+                      placeholder="Type Location"
+                      className="input input-bordered w-[50vh]"
+                    />
+                  </label>
+                </div>
+                <div className="w-[50vh]">
+                  <label className="form-control w-[50vh]">
+                    <div className="label">
+                      <span className="label-text">Category</span>
+                    </div>
+                    <Field
+                      type="text"
+                      name="eventCategoryId"
+                      placeholder="Type Event Category"
+                      className="input input-bordered w-[50vh]"
+                    />
+                  </label>
+                </div>
+                <div className="w-[50vh]">
+                  <label className="form-control w-[50vh]">
+                    <div className="label">
+                      <span className="label-text">Event Type</span>
+                    </div>
+                    <Field
+                      type="text"
+                      name="typeEvent"
+                      placeholder="Type Event Type"
+                      className="input input-bordered w-[50vh]"
+                    />
+                  </label>
+                </div>
+              </div>
+
+              <div className="w-full">
+                <div className="w-[50vh]">
+                  <label className="form-control w-[50vh]">
+                    <div className="label">
+                      <span className="label-text">Start Date</span>
+                    </div>
+                    <Field
+                      type="date"
+                      name="startDate"
+                      placeholder="Type Start Date"
+                      className="input input-bordered w-[50vh]"
+                    />
+                  </label>
+                </div>
+                <div className="w-[50vh]">
+                  <label className="form-control w-[50vh]">
+                    <div className="label">
+                      <span className="label-text">End Date</span>
+                    </div>
+                    <Field
+                      type="date"
+                      name="endDate"
+                      placeholder="Type End Date"
+                      className="input input-bordered w-[50vh]"
+                    />
+                  </label>
+                </div>
+                <div className="w-[50vh]">
+                  <label className="form-control w-[50vh]">
+                    <div className="label">
+                      <span className="label-text">Start Time</span>
+                    </div>
+                    <Field
+                      type="time"
+                      name="startTime"
+                      placeholder="Type Start Time"
+                      className="input input-bordered w-[50vh]"
+                    />
+                  </label>
+                </div>{' '}
+                <div className="w-[50vh]">
+                  <label className="form-control w-[50vh]">
+                    <div className="label">
+                      <span className="label-text">End Time</span>
+                    </div>
+                    <Field
+                      type="time"
+                      name="endTime"
+                      placeholder="Type End Time"
+                      className="input input-bordered w-[50vh]"
+                    />
+                  </label>
+                </div>
+                <div className="w-[50vh]">
+                  <label className="form-control w-[50vh]">
+                    <div className="label">
+                      <span className="label-text">Description</span>
+                    </div>
+                    <Field
+                      type="text"
+                      name="description"
+                      placeholder="Type Description"
+                      className="input input-bordered w-[50vh]"
+                    />
+                  </label>
+                </div>
+              </div>
             </div>
-            <div className="w-[50vh]">
-              <label className="form-control w-[50vh]">
-                <div className="label">
-                  <span className="label-text">Start Date</span>
-                </div>
-                <Field
-                  type="date"
-                  name="startDate"
-                  placeholder="Type Start Date"
-                  className="input input-bordered w-[50vh]"
-                />
-              </label>
-            </div>
-            <div className="w-[50vh]">
-              <label className="form-control w-[50vh]">
-                <div className="label">
-                  <span className="label-text">End Date</span>
-                </div>
-                <Field
-                  type="date"
-                  name="endDate"
-                  placeholder="Type End Date"
-                  className="input input-bordered w-[50vh]"
-                />
-              </label>
-            </div>
-            <div className="w-[50vh]">
-              <label className="form-control w-[50vh]">
-                <div className="label">
-                  <span className="label-text">Start Time</span>
-                </div>
-                <Field
-                  type="time"
-                  name="startTime"
-                  placeholder="Type Start Time"
-                  className="input input-bordered w-[50vh]"
-                />
-              </label>
-            </div>{' '}
-            <div className="w-[50vh]">
-              <label className="form-control w-[50vh]">
-                <div className="label">
-                  <span className="label-text">End Time</span>
-                </div>
-                <Field
-                  type="time"
-                  name="endTime"
-                  placeholder="Type End Time"
-                  className="input input-bordered w-[50vh]"
-                />
-              </label>
-            </div>
-            <div className="w-[50vh]">
-              <label className="form-control w-[50vh]">
-                <div className="label">
-                  <span className="label-text">Location</span>
-                </div>
-                <Field
-                  type="text"
-                  name="location"
-                  placeholder="Type Location"
-                  className="input input-bordered w-[50vh]"
-                />
-              </label>
-            </div>
-            <div className="w-[50vh]">
-              <label className="form-control w-[50vh]">
-                <div className="label">
-                  <span className="label-text">Category</span>
-                </div>
-                <Field
-                  type="text"
-                  name="eventCategoryId"
-                  placeholder="Type Event Category"
-                  className="input input-bordered w-[50vh]"
-                />
-              </label>
-            </div>
-            <div className="w-[50vh]">
-              <label className="form-control w-[50vh]">
-                <div className="label">
-                  <span className="label-text">Event Type</span>
-                </div>
-                <Field
-                  type="text"
-                  name="typeEvent"
-                  placeholder="Type Event Type"
-                  className="input input-bordered w-[50vh]"
-                />
-              </label>
-            </div>
-            <div className="w-[50vh]">
-              <label className="form-control w-[50vh]">
-                <div className="label">
-                  <span className="label-text">Description</span>
-                </div>
-                <Field
-                  type="text"
-                  name="description"
-                  placeholder="Type Description"
-                  className="input input-bordered w-[50vh]"
-                />
-              </label>
-            </div>
-            <div className="w-[50vh]">
-              <label className="form-control w-[50vh]">
+
+            <div className="w-full flex justify-center">
+              <label className="form-control">
                 <div className="label">
                   <span className="label-text">Select Images Profile</span>
                 </div>
@@ -217,11 +225,11 @@ export default function CreateEventPage() {
                   multiple
                   onChange={(event) => onSetFiles(event)}
                   placeholder="Enter Product Stock"
-                  className="input input-bordered rounded-md w-[50vh] px-2 py-2"
+                  className="input input-bordered rounded-md w-[100vh] px-2 py-2"
                 />
               </label>
             </div>
-            <button className="btn bg-indigo-500 text-white w-[50vh]">
+            <button className="btn bg-blue-500 text-white w-[100vh]">
               Submit
             </button>
           </div>

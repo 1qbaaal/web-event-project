@@ -1,5 +1,4 @@
 import { prisma } from '@/connection';
-import { ICreateEvent } from './types';
 
 export const createEvent = async (data: any, images: any) => {
   return await prisma.$transaction(async (tx) => {
