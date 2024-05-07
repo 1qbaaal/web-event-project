@@ -3,6 +3,7 @@ import { Formik, Form, Field } from 'formik';
 import { useState } from 'react';
 import { useCrateEventMutate } from '../../hooks/useCreateEventMutate';
 
+
 export default function CreateEventPage() {
   const [eventPage, setEventPage] = useState([]);
   const { mutationCreateEvent } = useCrateEventMutate();
