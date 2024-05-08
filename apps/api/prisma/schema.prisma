@@ -21,7 +21,6 @@ model User {
   role       Role      @relation(fields: [roleId], references: [id])
   referralId String?   @unique
   referral   Referral? @relation(fields: [referralId], references: [uid])
-  event      Event[]
   tiket      Ticket[]
   review     Review[]
 
@@ -44,35 +43,87 @@ model Event {
   id          Int         @id @default(autoincrement())
   name        String
   price       Int
-  sheduleAt   DateTime    @db.DateTime()
-  location    String
+  startDate   DateTime    @db.Date
+  endDate     DateTime    @db.Date
+  startTime   DateTime    @db.Time()
+  endTime     DateTime    @db.Time()
+  locationId  Int
+  location    Location    @relation(fields: [locationId], references: [id])
   description String
-  category    String
-  typeEvent   String
+  eventType   EventType   @relation(fields: [eventTypeId], references: [id])
+  eventTypeId Int
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
   deletedAt   DateTime?
-  userId      String
-  user        User        @relation(fields: [userId], references: [uid])
   promotion   Promotion[]
   ticket      Ticket[]
   review      Review[]
+  eventImage  EventImage?
+
+  eventCategoryId Int
+  eventCategory   EventCategory @relation(fields: [eventCategoryId], references: [id])
 
   @@map("events")
 }
 
+model Location {
+  id        Int       @id @default(autoincrement())
+  city      String
+  province  String
+  zip       String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+  event Event[]
+
+  @@map("eventlocations")
+}
+
+model EventType {
+  id        Int       @id @default(autoincrement())
+  name      String
+  createAt  DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  event Event[]
+
+  @@map("eventtypes")
+}
+
+model EventImage {
+  id      Int    @id @default(autoincrement())
+  url     String
+  eventId Int    @unique
+  event   Event  @relation(fields: [eventId], references: [id])
+
+  @@map("eventImages")
+}
+
+model EventCategory {
+  id        Int       @id @default(autoincrement())
+  category  String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  event Event[]
+
+  @@map("eventcategories")
+}
+
 model Ticket {
-  uid         String    @id @default(cuid())
+  id          Int       @id @default(autoincrement())
   totalTicket Int
   typeTicket  String
   price       Decimal   @db.Decimal(10, 2)
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
   deletedAt   DateTime?
-  eventid     Int
-  event       Event     @relation(fields: [eventid], references: [id])
-  User        User?     @relation(fields: [userUid], references: [uid])
-  userUid     String?
+  eventId     Int
+  event       Event     @relation(fields: [eventId], references: [id])
+  User        User?     @relation(fields: [userId], references: [uid])
+  userId      String?
 
   @@map("tickets")
 }
@@ -84,7 +135,7 @@ model Review {
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
-  Event     Event?    @relation(fields: [eventId], references: [id])
+  event     Event?    @relation(fields: [eventId], references: [id])
   eventId   Int?
   User      User?     @relation(fields: [userUid], references: [uid])
   userUid   String?
