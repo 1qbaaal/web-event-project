@@ -2,11 +2,12 @@
 import { Formik, Form, Field } from 'formik';
 import { useState } from 'react';
 import { useCrateEventMutate } from '../../hooks/useCreateEventMutate';
-
+import { useCategoryQuery } from '../../hooks/useGetCategoryQuery';
 
 export default function CreateEventPage() {
   const [eventPage, setEventPage] = useState([]);
   const { mutationCreateEvent } = useCrateEventMutate();
+  const { dataCategory, dataLocation, dataEventType} = useCategoryQuery();
 
   const onSetFiles = (event) => {
     try {
@@ -43,10 +44,10 @@ export default function CreateEventPage() {
           endDate: '',
           startTime: '',
           endTime: '',
-          location: '',
+          locationId: '',
           description: '',
           eventCategoryId: '',
-          typeEvent: '',
+          eventTypeId: '',
         }}
         onSubmit={(values) => {
           const fd = new FormData();
@@ -59,10 +60,10 @@ export default function CreateEventPage() {
               endDate: new Date(values.endDate),
               startTime: new Date(),
               endTime: new Date(),
-              location: values.location,
+              locationId: parseInt(values.locationId),
               description: values.description,
               eventCategoryId: parseInt(values.eventCategoryId),
-              typeEvent: values.typeEvent,
+              eventTypeId: parseInt(values.eventTypeId),
             }),
           );
           eventPage.forEach((file) => {
@@ -105,48 +106,78 @@ export default function CreateEventPage() {
                     />
                   </label>
                 </div>
-                <div className="w-[50vh]">
-                  <label className="form-control w-[50vh]">
+                <div className="w-full">
+                  <label className="form-control w-full">
                     <div className="label">
                       <span className="label-text">Location</span>
                     </div>
                     <Field
-                      type="text"
-                      name="location"
-                      placeholder="Type Location"
-                      className="input input-bordered w-[50vh]"
-                    />
+                      component="select"
+                      id="locationId"
+                      name="locationId"
+                      className="select select-bordered w-full text-black"
+                    >
+                      <option>Choose Location</option>
+                      {dataLocation?.map((location, index) => {
+                        return (
+                          <option value={location.id} key={index}>
+                            {' '}
+                            {location.city}{" "}-{" "}{location.province}
+                          </option>
+                        );
+                      })}
+                    </Field>
                   </label>
                 </div>
-                <div className="w-[50vh]">
-                  <label className="form-control w-[50vh]">
+                <div className="w-full">
+                  <label className="form-control w-full">
                     <div className="label">
                       <span className="label-text">Category</span>
                     </div>
                     <Field
-                      type="text"
+                      component="select"
+                      id="eventCategoryId"
                       name="eventCategoryId"
-                      placeholder="Type Event Category"
-                      className="input input-bordered w-[50vh]"
-                    />
+                      className="select select-bordered w-full text-black"
+                    >
+                      <option>Choose Category</option>
+                      {dataCategory?.map((category, index) => {
+                        return (
+                          <option value={category.id} key={index}>
+                            {' '}
+                            {category.category}{' '}
+                          </option>
+                        );
+                      })}
+                    </Field>
                   </label>
                 </div>
-                <div className="w-[50vh]">
-                  <label className="form-control w-[50vh]">
+                <div className="w-full">
+                  <label className="form-control w-full">
                     <div className="label">
-                      <span className="label-text">Event Type</span>
+                      <span className="label-text">Type Event</span>
                     </div>
                     <Field
-                      type="text"
-                      name="typeEvent"
-                      placeholder="Type Event Type"
-                      className="input input-bordered w-[50vh]"
-                    />
+                      component="select"
+                      id="eventTypeId"
+                      name="eventTypeId"
+                      className="select select-bordered w-full text-black"
+                    >
+                      <option>Choose Type Event</option>
+                      {dataEventType?.map((type, index) => {
+                        return (
+                          <option value={type.id} key={index}>
+                            {' '}
+                            {type.name}{' '}
+                          </option>
+                        );
+                      })}
+                    </Field>
                   </label>
                 </div>
               </div>
 
-              <div className="w-full">
+              <div className="w-full pt-2">
                 <div className="w-[50vh]">
                   <label className="form-control w-[50vh]">
                     <div className="label">
@@ -205,17 +236,18 @@ export default function CreateEventPage() {
                       <span className="label-text">Description</span>
                     </div>
                     <Field
+                      as="textarea"
                       type="text"
                       name="description"
                       placeholder="Type Description"
-                      className="input input-bordered w-[50vh]"
+                      className="input input-bordered w-[50vh] h-[20vh] pt-2"
                     />
                   </label>
                 </div>
               </div>
             </div>
 
-            <div className="w-full flex justify-center">
+            <div className=" flex justify-center">
               <label className="form-control">
                 <div className="label">
                   <span className="label-text">Select Images Profile</span>
@@ -226,11 +258,11 @@ export default function CreateEventPage() {
                   multiple
                   onChange={(event) => onSetFiles(event)}
                   placeholder="Enter Product Stock"
-                  className="input input-bordered rounded-md w-[100vh] px-2 py-2"
+                  className="input input-bordered rounded-md w-[108vh] px-2 py-2 "
                 />
               </label>
             </div>
-            <button className="btn bg-blue-500 text-white w-[100vh]">
+            <button className="btn bg-blue-500 w-[108vh] hover:bg-blue-700 text-white ">
               Submit
             </button>
           </div>

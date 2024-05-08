@@ -47,9 +47,11 @@ model Event {
   endDate     DateTime    @db.Date
   startTime   DateTime    @db.Time()
   endTime     DateTime    @db.Time()
-  location    String
+  locationId  Int
+  location    Location    @relation(fields: [locationId], references: [id])
   description String
-  typeEvent   String
+  eventType   EventType   @relation(fields: [eventTypeId], references: [id])
+  eventTypeId Int
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
   deletedAt   DateTime?
@@ -58,10 +60,35 @@ model Event {
   review      Review[]
   eventImage  EventImage?
 
-  eventCategoryId Int           @unique
+  eventCategoryId Int
   eventCategory   EventCategory @relation(fields: [eventCategoryId], references: [id])
 
   @@map("events")
+}
+
+model Location {
+  id        Int       @id @default(autoincrement())
+  city      String
+  province  String
+  zip       String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+  event Event[]
+
+  @@map("eventlocations")
+}
+
+model EventType {
+  id        Int       @id @default(autoincrement())
+  name      String
+  createAt  DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  event Event[]
+
+  @@map("eventtypes")
 }
 
 model EventImage {
@@ -80,7 +107,7 @@ model EventCategory {
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
-  event Event?
+  event Event[]
 
   @@map("eventcategories")
 }

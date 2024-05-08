@@ -1,19 +1,31 @@
-import { prisma } from "@/connection"
+import { prisma } from '@/connection';
 
-export const deleteEvent = async ({id}: {id: number}) =>{
-  const findEvent = await prisma.event.findUnique({
-    where:{
-      id: id
-    }
-  })
-  if(!findEvent){
-    throw new Error('Event Id Not Found!')
-  }else{
-    await prisma.event.delete({
+export const deleteEvent = async ({ id }: { id: number }) => {
+  return await prisma.$transaction(async (tx: any) => {
+    const findEvent = await tx.eventImage.findUnique({
+      where: {
+        id: id,
+      },
+    });
+
+    const findEventId = await tx.event.findUnique({
       where:{
         id: id
       }
     })
-    return findEvent
-  }
-}
+
+    if (!findEvent) throw new Error('Event Id Not Found!');
+
+    await tx.eventImage.delete({
+      where: {
+        id: findEvent.id,
+      },
+    });
+
+    await tx.event.delete({
+      where: {
+        id: findEvent.id,
+      },
+    });
+  });
+};

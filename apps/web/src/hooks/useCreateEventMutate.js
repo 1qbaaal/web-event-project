@@ -1,12 +1,14 @@
-'use client'
+'use client';
+import { toast } from 'react-toastify';
 import { useCreateEventMutation } from '../api/useCreateEventMutation';
 
 export const useCrateEventMutate = () => {
   const { mutate: mutationCreateEvent } = useCreateEventMutation({
     onSuccess: (res) => {
-      console.log(res.data.message);
+      toast.success(res.data.message);
     },
     onError: (err) => {
+      // toast.error(err.response.data.message);
       console.log(err);
     },
   });
