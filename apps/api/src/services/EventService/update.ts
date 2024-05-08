@@ -1,7 +1,7 @@
 import { prisma } from "@/connection"
 
 export const updateEvent = async (data: any, images: any, id:any) =>{
-  return await prisma.$transaction(async(tx) => {
+  return await prisma.$transaction(async(tx: any) => {
     const findEventById = await tx.event.findUnique({
       where:{
         id: parseInt(id)
@@ -21,10 +21,10 @@ export const updateEvent = async (data: any, images: any, id:any) =>{
         endDate: new Date(data.endDate),
         startTime: new Date(),
         endTime: new Date(),
-        location: data.schedule,
+        locationId: data.locationId,
         description: data.description,
         eventCategoryId: data.eventCategoryId,
-        typeEvent: data.typeEvent,
+        evenTypeId: data.typeEventId
       }
     })
 

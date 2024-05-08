@@ -1,5 +1,4 @@
 import { deleteEvent } from '@/services/EventService/delete';
-import { error } from 'console';
 import { NextFunction, Request, Response } from 'express';
 
 export const deleteEventById = async (
@@ -8,7 +7,7 @@ export const deleteEventById = async (
   next: NextFunction,
 ) => {
   try {
-    const { id } = req.body
+    const { id } = req.body;
     await deleteEvent({
       id: parseInt(id),
     });

@@ -56,6 +56,38 @@ const dataEventCategory = [
   
 ]
 
+const dataLocation = [
+  {
+    city: "Jakarta",
+    province: "DKI Jakarta",
+    zip: "12345"
+  },
+  {
+    city: "Bandung",
+    province: "Jawa Barat",
+    zip: "23456"
+  },
+  {
+    city: "Semarang",
+    province: "Jawa Tengah",
+    zip: "34567"
+  },
+  {
+    city: "Surabaya",
+    province: "Jawa Timur",
+    zip: "45678"
+  }
+]
+
+const dataEventType = [
+  {
+    name: "Free"
+  },
+  {
+    name: "Paid"
+  }
+]
+
 async function main(){
   for(let item of dataRole){
     await prisma.role.create({
@@ -69,6 +101,16 @@ async function main(){
   }
   for(let item of dataEventCategory){
     await prisma.eventCategory.create({
+      data: item
+    })
+  }
+  for(let item of dataLocation){
+    await prisma.location.create({
+      data: item
+    })
+  }
+  for(let item of dataEventType){
+    await prisma.eventType.create({
       data: item
     })
   }

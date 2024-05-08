@@ -29,20 +29,18 @@ CREATE TABLE `events` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(191) NOT NULL,
     `price` INTEGER NOT NULL,
-    `schedule` DATE NOT NULL,
-    `time` TIME NOT NULL,
     `startDate` DATE NOT NULL,
     `endDate` DATE NOT NULL,
+    `startTime` TIME NOT NULL,
+    `endTime` TIME NOT NULL,
     `location` VARCHAR(191) NOT NULL,
     `description` VARCHAR(191) NOT NULL,
     `typeEvent` VARCHAR(191) NOT NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
     `deletedAt` DATETIME(3) NULL,
-    `userId` VARCHAR(191) NOT NULL,
     `eventCategoryId` INTEGER NOT NULL,
 
-    UNIQUE INDEX `events_eventCategoryId_key`(`eventCategoryId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -127,9 +125,6 @@ ALTER TABLE `users` ADD CONSTRAINT `users_roleId_fkey` FOREIGN KEY (`roleId`) RE
 
 -- AddForeignKey
 ALTER TABLE `users` ADD CONSTRAINT `users_referralId_fkey` FOREIGN KEY (`referralId`) REFERENCES `referrals`(`uid`) ON DELETE SET NULL ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE `events` ADD CONSTRAINT `events_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `users`(`uid`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `events` ADD CONSTRAINT `events_eventCategoryId_fkey` FOREIGN KEY (`eventCategoryId`) REFERENCES `eventcategories`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
