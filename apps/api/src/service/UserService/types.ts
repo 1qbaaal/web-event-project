@@ -1,5 +1,7 @@
 export interface ICreateUser {
   email: string,
   password: string,
-  roleId: number
+  roleId: number,
+  referralId:string,
+  
 }
