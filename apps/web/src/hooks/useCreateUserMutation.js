@@ -3,10 +3,11 @@ export const useCreateUser =()=>{
 console.log('hello')
     const {mutate:mutationCreateUser} = useCreateUserMutation({
         onSuccess:(res) =>{
-            console.log (res.data)
+            alert(res.data)
+            console.log('Registration Succes')
         },
         onError:(err)=>{
-            console.log (err.response.data.message)
+            alert (err.response.data.message)
         }
     })
 

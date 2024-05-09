@@ -14,7 +14,7 @@ export default function PromotorLoginPage() {
             }}
             onSubmit={(values) => {
                 console.log(values)
-                mutationAuth({
+                mutation({
                     email: values.email, 
                     password: values.password
                 })
