@@ -5,6 +5,7 @@ import UserRouter from './UserRouter';
 import CategoryRouter from './CategoryRouter';
 import LocationRouter from './LocationRouter';
 import TypeRouter from './TypeRouter';
+import TicketRouter from './TicketRouter';
 
 const router = Router();
 router.use(express.json());
@@ -15,5 +16,6 @@ router.use('/user', UserRouter);
 router.use('/category', CategoryRouter);
 router.use('/location', LocationRouter);
 router.use('/type', TypeRouter);
+router.use('/ticket', TicketRouter)
 
 export default router;

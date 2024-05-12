@@ -5,7 +5,7 @@ export const createTicket = async({
   totalTicket,
   typeTicket,
   price,
-  eventid,
+  eventId,
   userId
 }: ICreateTicket) =>{
   await prisma.ticket.create({
@@ -13,7 +13,7 @@ export const createTicket = async({
       totalTicket,
       typeTicket,
       price,
-      eventid,
+      eventId,
       userId
     }
   })
