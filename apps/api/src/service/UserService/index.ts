@@ -7,8 +7,8 @@ export const createUser = async ({email,password,roleId,referralId}: ICreateUser
     data:{
       email,
       password,
-      roleId,
-      referralId,
+      roleId
+      //referralId
     }
   })
   //add points everytime
