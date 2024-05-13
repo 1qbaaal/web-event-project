@@ -1,11 +1,18 @@
+'use client'
 import { AiOutlineSchedule } from 'react-icons/ai';
-import { ImTicket } from 'react-icons/im';
+import { ImTicket } from "react-icons/im";
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 
+
 export const Header = () => {
+  // const router =useRouter()
+  // const handleClick = () => {
+  //   router.push('/user/login')
+  // }
   return (
     <div>
-      <header className="p-4 text-black">
+      <header className="p-4 text-black fixed z-10 bg-white w-full">
         <div className="container flex justify-between h-16 mx-auto">
           <a
             rel="noopener noreferrer"
