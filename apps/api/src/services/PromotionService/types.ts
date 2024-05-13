@@ -1,5 +1,6 @@
 export interface ICreatePromotion{
-  description: string,
+  codeVoucher: string,
+  totalVoucher: number,
   discount: number,
   startDate: Date,
   endDate: Date,
