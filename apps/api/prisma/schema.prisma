@@ -17,6 +17,7 @@ model User {
   createdAt  DateTime  @default(now())
   updatedAt  DateTime  @updatedAt
   deletedAt  DateTime?
+  expiredDate DateTime?
   roleId     Int
   role       Role      @relation(fields: [roleId], references: [id])
   referralId String?   @unique
@@ -33,7 +34,6 @@ model Role {
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
-
   user User[]
 
   @@map("roles")
@@ -164,6 +164,7 @@ model Referral {
   referralCode       String    @default(cuid())
   referralUserReward Int       @default(10000)
   referredUserReward Int       @default(10)
+  points     Int?   @default(0)
   expiredDate        DateTime  @db.Date
   createdAt          DateTime  @default(now())
   updatedAt          DateTime  @updatedAt
@@ -172,3 +173,6 @@ model Referral {
 
   @@map("referrals")
 }
+
+
+

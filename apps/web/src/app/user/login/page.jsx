@@ -1,36 +1,54 @@
-'use clients'
+'use client'
+import { Formik,Form,Field } from "formik"
+import {useAuthLogin} from '../../../hooks/Auth/useAuthlogin'
+import { useRouter } from "next/router"
 export default function UserLoginPage() {
-    return (              
-            <div className="flex justify-center pt-10">
-                <div class="w-full max-w-xs">
-            <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-                <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="Email">
-                    Email
-                </label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="Email" type="text" placeholder="Email"/>
-                </div>
-                <div class="mb-6">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
-                    Password
-                </label>
-                <input class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="password"/>
-                <p class="text-red-500 text-xs italic">Please choose a password.</p>
-                </div>
-                <div class="flex items-center justify-between">
-                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
-                    Sign In
-                </button>
-                <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
-                    Forgot Password?
-                </a>
-                </div>
-            </form>
-           
-            </div>
-
-            </div> 
+    const{mutationAuth}= useAuthLogin()
+    // const router= useRouter()
+    // const handleLogin =()=>{
+    // }
+    return (   
+        <>
+             <Formik
+                initialValues={{
+                    email:"",
+                    password:""
+                                
+                }}
+                onSubmit={(values) => {
+                    console.log(values)
+                    mutationAuth({
+                        email: values.email, 
+                        password: values.password
+                    })
+                    
+                }}
+        >
+            <Form>
+            <div className='flex flex-col items-center px-5 py-10 pt-[100px] gap-3'>
+                            <div className='w-[500px]'>
+                                <label className="form-control w-full">
+                                    <div className="label">
+                                        <span className="label-text">Email Account</span>
+                                    </div>
+                                    <Field type="text" name='email' placeholder="Type Email" className="input input-bordered w-full" />
+                                </label>
+                            </div>
+                            <div className='w-[500px]'>
+                                <label className="form-control w-full">
+                                    <div className="label">
+                                        <span className="label-text">Password Account</span>
+                                    </div>
+                                    <Field type="text" name='password' placeholder="Type Password" className="input input-bordered w-full" />
+                                </label>
+                            </div>
+                            <button className='btn bg-indigo-500 text-white w-[500px]'>
+                                Signin
+                            </button>
+                        </div>
+            </Form>
+        </Formik>
+        </>  
     )
     }
-  
   
