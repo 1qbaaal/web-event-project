@@ -5,6 +5,9 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import TanstackProvider from '../providers/TanstackProviders';
 import ProtectedRoute from '@/components/ProtectedRoute';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
+
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -23,7 +26,10 @@ export default function RootLayout({
       <body className={inter.className}>
       <ProtectedRoute>
         <TanstackProvider>
-        <Header />
+
+          <ToastContainer />
+          <Header />
+
           {children}
           <Footer />
       </TanstackProvider>

@@ -1,4 +1,4 @@
-import { updateEvent } from '@/service/EventService/update';
+import { updateEvent } from '@/services/EventService/update';
 import { NextFunction, Request, Response } from 'express';
 import { DeletedUploadFiles } from '@/helpers/DeletedUploadFiles';
 

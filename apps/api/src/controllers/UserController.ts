@@ -1,5 +1,5 @@
 import { HashPassword } from "@/helpers/Hashing";
-import { createUser } from "@/service/UserService";
+import { createUser } from "@/services/UserService";
 import { NextFunction, Request, Response } from "express";
 
 export const createUserAccount = async (req: Request, res: Response, next: NextFunction) => {
