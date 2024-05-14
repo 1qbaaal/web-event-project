@@ -8,7 +8,7 @@ export const createPromotion = async ({
   startDate,
   endDate,
   eventId
-}:ICreatePromotion ) => {
+}: ICreatePromotion ) => {
   await prisma.promotion.create({
     data:{
       codeVoucher,
