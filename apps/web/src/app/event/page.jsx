@@ -74,7 +74,7 @@ export default function CreateEventPage() {
         }}
       >
         <Form>
-          <div className="flex flex-col items-center px-5 py-4 gap-3">
+          <div className="flex flex-col items-center px-5 py-32 gap-3">
             <div className="text-center font-bold">
               <p>REGISTER EVENT</p>
             </div>

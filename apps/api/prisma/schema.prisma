@@ -22,7 +22,6 @@ model User {
   role       Role      @relation(fields: [roleId], references: [id])
   referralId String?   @unique
   referral   Referral? @relation(fields: [referralId], references: [uid])
-  tiket      Ticket[]
   review     Review[]
 
   @@map("users")
@@ -122,8 +121,7 @@ model Ticket {
   deletedAt   DateTime?
   eventId     Int
   event       Event     @relation(fields: [eventId], references: [id])
-  User        User?     @relation(fields: [userId], references: [uid])
-  userId      String?
+
 
   @@map("tickets")
 }

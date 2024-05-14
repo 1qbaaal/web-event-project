@@ -5,16 +5,14 @@ export const createTicket = async({
   totalTicket,
   typeTicket,
   price,
-  eventId,
-  userId
+  eventId
 }: ICreateTicket) =>{
   await prisma.ticket.create({
     data:{
       totalTicket,
       typeTicket,
       price,
-      eventId,
-      userId
+      eventId
     }
   })
 }

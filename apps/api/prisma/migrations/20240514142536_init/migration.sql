@@ -6,6 +6,7 @@ CREATE TABLE `users` (
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
     `deletedAt` DATETIME(3) NULL,
+    `expiredDate` DATETIME(3) NULL,
     `roleId` INTEGER NOT NULL,
     `referralId` VARCHAR(191) NULL,
 
@@ -33,13 +34,37 @@ CREATE TABLE `events` (
     `endDate` DATE NOT NULL,
     `startTime` TIME NOT NULL,
     `endTime` TIME NOT NULL,
-    `location` VARCHAR(191) NOT NULL,
+    `locationId` INTEGER NOT NULL,
     `description` VARCHAR(191) NOT NULL,
-    `typeEvent` VARCHAR(191) NOT NULL,
+    `eventTypeId` INTEGER NOT NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
     `deletedAt` DATETIME(3) NULL,
     `eventCategoryId` INTEGER NOT NULL,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `eventlocations` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `city` VARCHAR(191) NOT NULL,
+    `province` VARCHAR(191) NOT NULL,
+    `zip` VARCHAR(191) NOT NULL,
+    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updatedAt` DATETIME(3) NOT NULL,
+    `deletedAt` DATETIME(3) NULL,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `eventtypes` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(191) NOT NULL,
+    `createAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updatedAt` DATETIME(3) NOT NULL,
+    `deletedAt` DATETIME(3) NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -75,7 +100,6 @@ CREATE TABLE `tickets` (
     `updatedAt` DATETIME(3) NOT NULL,
     `deletedAt` DATETIME(3) NULL,
     `eventId` INTEGER NOT NULL,
-    `userId` VARCHAR(191) NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -112,6 +136,7 @@ CREATE TABLE `referrals` (
     `referralCode` VARCHAR(191) NOT NULL,
     `referralUserReward` INTEGER NOT NULL DEFAULT 10000,
     `referredUserReward` INTEGER NOT NULL DEFAULT 10,
+    `points` INTEGER NULL DEFAULT 0,
     `expiredDate` DATE NOT NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
@@ -127,6 +152,12 @@ ALTER TABLE `users` ADD CONSTRAINT `users_roleId_fkey` FOREIGN KEY (`roleId`) RE
 ALTER TABLE `users` ADD CONSTRAINT `users_referralId_fkey` FOREIGN KEY (`referralId`) REFERENCES `referrals`(`uid`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE `events` ADD CONSTRAINT `events_locationId_fkey` FOREIGN KEY (`locationId`) REFERENCES `eventlocations`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `events` ADD CONSTRAINT `events_eventTypeId_fkey` FOREIGN KEY (`eventTypeId`) REFERENCES `eventtypes`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE `events` ADD CONSTRAINT `events_eventCategoryId_fkey` FOREIGN KEY (`eventCategoryId`) REFERENCES `eventcategories`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
@@ -134,9 +165,6 @@ ALTER TABLE `eventImages` ADD CONSTRAINT `eventImages_eventId_fkey` FOREIGN KEY 
 
 -- AddForeignKey
 ALTER TABLE `tickets` ADD CONSTRAINT `tickets_eventId_fkey` FOREIGN KEY (`eventId`) REFERENCES `events`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE `tickets` ADD CONSTRAINT `tickets_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `users`(`uid`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `reviews` ADD CONSTRAINT `reviews_eventId_fkey` FOREIGN KEY (`eventId`) REFERENCES `events`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
