@@ -1,7 +1,7 @@
 import { useQueries } from '@tanstack/react-query';
 import axios from 'axios';
 
-export const useGetCategoryQuery = () => {
+export const useGetCategoryLocationAndTypeQuery = () => {
   const [categoryQuery, locationQuery, eventTypeQuery] = useQueries({
     queries: [
       {

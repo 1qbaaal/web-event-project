@@ -2,12 +2,12 @@
 import { Formik, Form, Field } from 'formik';
 import { useState } from 'react';
 import { useCrateEventMutate } from '../../hooks/useCreateEventMutate';
-import { useCategoryQuery } from '../../hooks/useGetCategoryQuery';
+import { useCategoryLocationAndTypeQuery } from '../../hooks/useGetCategoryQuery';
 
 export default function CreateEventPage() {
   const [eventPage, setEventPage] = useState([]);
   const { mutationCreateEvent } = useCrateEventMutate();
-  const { dataCategory, dataLocation, dataEventType} = useCategoryQuery();
+  const { dataCategory, dataLocation, dataEventType} = useCategoryLocationAndTypeQuery();
 
   const onSetFiles = (event) => {
     try {
@@ -74,7 +74,7 @@ export default function CreateEventPage() {
         }}
       >
         <Form>
-          <div className="flex flex-col items-center px-5 py-4 gap-3">
+          <div className="flex flex-col items-center px-5 py-32 gap-3">
             <div className="text-center font-bold">
               <p>REGISTER EVENT</p>
             </div>

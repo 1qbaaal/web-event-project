@@ -2,7 +2,8 @@ import { prisma } from "@/connection";
 import { ICreatePromotion } from "./types";
 
 export const createPromotion = async ({
-  description,
+  codeVoucher,
+  totalVoucher,
   discount,
   startDate,
   endDate,
@@ -10,7 +11,8 @@ export const createPromotion = async ({
 }:ICreatePromotion ) => {
   await prisma.promotion.create({
     data:{
-      description,
+      codeVoucher,
+      totalVoucher,
       discount,
       startDate: new Date(startDate),
       endDate: new Date(endDate),

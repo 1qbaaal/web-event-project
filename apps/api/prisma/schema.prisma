@@ -74,7 +74,7 @@ model Location {
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
-  event Event[]
+  event     Event[]
 
   @@map("eventlocations")
 }
@@ -144,13 +144,17 @@ model Review {
 }
 
 model Promotion {
-  id          Int      @id @default(autoincrement())
-  description String
-  discount    Int
-  startDate   DateTime @db.Date
-  endDate     DateTime @db.Date
-  eventId     Int
-  event       Event    @relation(fields: [eventId], references: [id])
+  id           Int       @id @default(autoincrement())
+  codeVoucher  String
+  totalVoucher Int
+  discount     Int
+  startDate    DateTime  @db.Date
+  endDate      DateTime  @db.Date
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  deletedAt    DateTime?
+  eventId      Int
+  event        Event     @relation(fields: [eventId], references: [id])
 
   @@map("promotions")
 }
