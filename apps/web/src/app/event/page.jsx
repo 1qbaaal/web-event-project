@@ -2,12 +2,12 @@
 import { Formik, Form, Field } from 'formik';
 import { useState } from 'react';
 import { useCrateEventMutate } from '../../hooks/useCreateEventMutate';
-import { useCategoryQuery } from '../../hooks/useGetCategoryQuery';
+import { useCategoryLocationAndTypeQuery } from '../../hooks/useGetCategoryQuery';
 
 export default function CreateEventPage() {
   const [eventPage, setEventPage] = useState([]);
   const { mutationCreateEvent } = useCrateEventMutate();
-  const { dataCategory, dataLocation, dataEventType} = useCategoryQuery();
+  const { dataCategory, dataLocation, dataEventType} = useCategoryLocationAndTypeQuery();
 
   const onSetFiles = (event) => {
     try {

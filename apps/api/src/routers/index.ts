@@ -6,6 +6,7 @@ import CategoryRouter from './CategoryRouter';
 import LocationRouter from './LocationRouter';
 import TypeRouter from './TypeRouter';
 import TicketRouter from './TicketRouter';
+import PromotionRouter from './PromotionRouter';
 
 const router = Router();
 router.use(express.json());
@@ -17,5 +18,6 @@ router.use('/category', CategoryRouter);
 router.use('/location', LocationRouter);
 router.use('/type', TypeRouter);
 router.use('/ticket', TicketRouter)
+router.use('/promotion', PromotionRouter);
 
 export default router;

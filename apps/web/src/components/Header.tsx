@@ -12,7 +12,7 @@ export const Header = () => {
   // }
   return (
     <div>
-      <header className="p-4 text-black fixed z-10 bg-white w-full">
+      <header className="p-4 text-black fixed z-10 bg-white w-full ">
         <div className="container flex justify-between h-16 mx-auto">
           <a
             rel="noopener noreferrer"
