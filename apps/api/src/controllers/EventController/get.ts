@@ -1,4 +1,4 @@
-import { getEvent } from '@/services/EventService/get';
+import { getAllEvent, getEventById } from '@/services/EventService/get';
 import { NextFunction, Request, Response } from 'express';
 
 export const getEventByParams = async (
@@ -8,8 +8,8 @@ export const getEventByParams = async (
 ) => {
   try {
     const { id } = req.params;
-    const listEventResult = await getEvent({
-      id: parseInt(id),
+    const listEventResult = await getEventById({
+      id,
     });
    
     res.status(200).send({
@@ -21,3 +21,17 @@ export const getEventByParams = async (
     next(error);
   }
 };
+
+export const getAllEventResult = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const getAllEventResult = await getAllEvent()
+    
+    res.status(200).send({
+      error: false,
+      message: 'Get Event Success',
+      data: getAllEventResult
+    })
+  } catch (error) {
+    next(error)
+  }
+}

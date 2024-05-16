@@ -4,11 +4,15 @@ import { useState } from 'react';
 import { useCrateEventMutate } from '../../hooks/useCreateEventMutate';
 import { useCategoryQuery } from '../../hooks/useGetCategoryQuery';
 import Link from 'next/link';
+import { useCategoryLocationAndTypeQuery } from '../../hooks/useGetCategoryQuery';
+import { CreateLocationModal } from '../../components/modal';
+
 
 export default function CreateEventPage() {
   const [eventPage, setEventPage] = useState([]);
   const { mutationCreateEvent } = useCrateEventMutate();
-  const { dataCategory, dataLocation, dataEventType} = useCategoryQuery();
+  const { dataCategory, dataLocation, dataEventType } =
+    useCategoryLocationAndTypeQuery();
 
   const onSetFiles = (event) => {
     try {
@@ -75,7 +79,7 @@ export default function CreateEventPage() {
         }}
       >
         <Form>
-          <div className="flex flex-col items-center px-5 py-4 gap-3">
+          <div className="flex flex-col items-center px-5 py-32 gap-3">
             <div className="text-center font-bold">
               <p>REGISTER EVENT</p>
             </div>
@@ -107,29 +111,31 @@ export default function CreateEventPage() {
                     />
                   </label>
                 </div>
+
                 <div className="w-full">
                   <label className="form-control w-full">
                     <div className="label">
-                      <span className="label-text">Location</span>
+                      <span className="label-text">Type Event</span>
                     </div>
                     <Field
                       component="select"
-                      id="locationId"
-                      name="locationId"
+                      id="eventTypeId"
+                      name="eventTypeId"
                       className="select select-bordered w-full text-black"
                     >
-                      <option>Choose Location</option>
-                      {dataLocation?.map((location, index) => {
+                      <option>Choose Type Event</option>
+                      {dataEventType?.map((type, index) => {
                         return (
-                          <option value={location.id} key={index}>
+                          <option value={type.id} key={index}>
                             {' '}
-                            {location.city}{" "}-{" "}{location.province}
+                            {type.name}{' '}
                           </option>
                         );
                       })}
                     </Field>
                   </label>
                 </div>
+
                 <div className="w-full">
                   <label className="form-control w-full">
                     <div className="label">
@@ -156,20 +162,20 @@ export default function CreateEventPage() {
                 <div className="w-full">
                   <label className="form-control w-full">
                     <div className="label">
-                      <span className="label-text">Type Event</span>
+                      <span className="label-text">Location</span>
                     </div>
                     <Field
                       component="select"
-                      id="eventTypeId"
-                      name="eventTypeId"
+                      id="locationId"
+                      name="locationId"
                       className="select select-bordered w-full text-black"
                     >
-                      <option>Choose Type Event</option>
-                      {dataEventType?.map((type, index) => {
+                      <option>Choose Location</option>
+                      {dataLocation?.map((location, index) => {
                         return (
-                          <option value={type.id} key={index}>
+                          <option value={location.id} key={index}>
                             {' '}
-                            {type.name}{' '}
+                            {location.city} - {location.province}
                           </option>
                         );
                       })}
@@ -263,6 +269,7 @@ export default function CreateEventPage() {
                 />
               </label>
             </div>
+
             <div className="gap-2">
                                     {" "}
                                      Don't have an account ?{" "}
@@ -278,6 +285,9 @@ export default function CreateEventPage() {
           </div>
         </Form>
       </Formik>
+      <div className="flex justify-center absolute bottom-0 pb-10 w-[550px] ml-52">
+        <CreateLocationModal />
+      </div>
     </div>
   );
 }

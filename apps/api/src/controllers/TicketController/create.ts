@@ -3,14 +3,13 @@ import { NextFunction, Request, Response } from "express";
 
 export const TicketEventController = async(req: Request, res: Response, next: NextFunction) => {
   try {
-    const { totalTicket, typeTicket, price, eventid, userId } = req.body;
+    const { totalTicket, typeTicket, price, eventId} = req.body;
 
     await createTicket({
       totalTicket,
       typeTicket,
       price,
-      eventid,
-      userId
+      eventId
     })
 
     res.status(200).send({

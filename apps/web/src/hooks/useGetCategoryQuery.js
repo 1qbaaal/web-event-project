@@ -1,7 +1,7 @@
-import { useGetCategoryQuery } from "../api/useGetCategoryQuery"
+import { useGetCategoryLocationAndTypeQuery } from "../api/useGetCategoryLocationAndTypeQuery";
 
-export const useCategoryQuery = () => {
-  const { categoryQuery, locationQuery,eventTypeQuery  } = useGetCategoryQuery()
+export const useCategoryLocationAndTypeQuery = () => {
+  const { categoryQuery, locationQuery,eventTypeQuery  } = useGetCategoryLocationAndTypeQuery()
 
   return {
      dataCategory: categoryQuery?.data?.data?.data,

@@ -6,32 +6,28 @@ const dataUser = [
   {
     email: 'iqbal@loket.com',
     password: '123456',
-    roleId: 1,
-    
+    roleId: 1
+
   },
   {
     email: 'barent@loket.com',
     password: '123456',
-    roleId: 2,
-    
+    roleId: 2
   },
   {
     email: 'dio@loket.com',
     password: '123456',
-    roleId: 2,
-    
+    roleId: 2
   },
   {
     email: 'monjus@loket.com',
     password: '123456',
-    roleId: 2,
-    
+    roleId: 2
   },
   {
     email: 'rika@loket.com',
     password: '123456',
-    roleId: 1,
-    
+    roleId: 1
   }
 ]
 
