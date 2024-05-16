@@ -70,9 +70,11 @@ export const Header = () => {
                 Buat Event
               </button>
             </Link>
+            <Link href="/user/login">
             <button className="self-center px-8 py-3 font-semibold rounded bg-blue-600 text-gray-50 hover:bg-gray-500">
               Masuk
             </button>
+            </Link>
           </div>
           <button className="p-4 lg:hidden">
             <svg

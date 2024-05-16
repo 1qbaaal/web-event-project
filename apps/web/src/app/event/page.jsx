@@ -3,6 +3,7 @@ import { Formik, Form, Field } from 'formik';
 import { useState } from 'react';
 import { useCrateEventMutate } from '../../hooks/useCreateEventMutate';
 import { useCategoryQuery } from '../../hooks/useGetCategoryQuery';
+import Link from 'next/link';
 
 export default function CreateEventPage() {
   const [eventPage, setEventPage] = useState([]);
@@ -262,6 +263,15 @@ export default function CreateEventPage() {
                 />
               </label>
             </div>
+            <div className="gap-2">
+                                    {" "}
+                                     Don't have an account ?{" "}
+                                     <a className="text-sky-400" href="">
+                                     <Link href="/promotor/register">
+                                        Register
+                                    </Link>
+                                    </a>{" "}
+                                    </div>
             <button className="btn bg-blue-500 w-[108vh] hover:bg-blue-700 text-white ">
               Submit
             </button>

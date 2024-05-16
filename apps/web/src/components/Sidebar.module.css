@@ -1,0 +1,115 @@
+/* styles/Sidebar.module.css */
+.sidebar {
+    width: 250px;
+    background-color: #f4f4f4;
+    padding: 20px;
+    position: fixed;
+    top: 80px; /* Adjust top padding to ensure it's below the header */
+    bottom: 0;
+    overflow-y: auto;
+    transition: width 0.3s ease;
+    z-index: 10000; 
+  }
+  
+  .open {
+    width: 200px;
+  }
+  
+  .toggleBtn {
+    display: yes;
+    cursor: pointer;
+  }
+  
+  .profileSection {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .userIcon {
+    font-size: 50px;
+    color: #333;
+    margin-right: 10px;
+  }
+  
+  .profile {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+  }
+  
+  .profile p {
+    margin: 0;
+    line-height: 1.5;
+  }
+  
+  .sidebar h2 {
+    margin: 0;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .sidebar nav ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .sidebar nav ul li {
+    margin: 15px 0;
+  }
+  
+  .sidebar nav ul li a {
+    text-decoration: none;
+    color: #333;
+    cursor: pointer;
+  }
+  
+  .sidebar nav ul li a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Ensure header is on top */
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #333;
+    z-index: 2000; /* Higher than sidebar */
+    padding: 10px;
+    /* Add any other necessary styles */
+  }
+  
+  /* Adjust padding for content below header */
+  .content {
+    padding-top: 90px; /* Adjust according to header height */
+    padding-bottom: 20px; /* Add padding to prevent content from being overlapped by the footer */
+  }
+  
+  .footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f4f4f4;
+    padding: 10px;
+    z-index: 2000; /* Higher than sidebar */
+  }
+  
+  @media screen and (max-width: 768px) {
+    .sidebar {
+      width: 70px;
+    }
+  
+    .open {
+      width: 250px;
+    }
+  
+    .toggleBtn {
+      display: block;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  }
+  

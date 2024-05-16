@@ -1,0 +1,12 @@
+/* styles/Layout.module.css */
+.container {
+    display: flex;
+    top: 50px;
+  }
+  
+  .main {
+    margin-left: 250px;
+    padding: 20px;
+    width: calc(100% - 250px);
+  }
+  
