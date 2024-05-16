@@ -6,7 +6,6 @@ export const useGetEventQuery = () => {
     queryKey: ['events'],
     queryFn: async () => {
       return await axios.get('http://localhost:8000/api/event/')
-      
     }
   })
 

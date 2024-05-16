@@ -1,9 +1,16 @@
 import { prisma } from "@/connection"
 
-export const getEvent = async ({id}: {id: number}) => {
+export const getEventById = async ({id}: {id: any}) => {
   const findEventId =  await prisma.event.findUnique({    
     where:{
-      id: id
+      id: Number(id)
+    },
+    include:{
+      eventType:true,
+      eventCategory:true,
+      eventImage:true,
+      location: true,
+      ticket: true
     }
   })
   if(!findEventId){
@@ -11,4 +18,17 @@ export const getEvent = async ({id}: {id: number}) => {
   }else{
     return findEventId
   }
+}
+
+export const getAllEvent = async () => {
+  return await prisma.event.findMany({
+    include: {
+      eventType: true,
+      eventCategory: true,
+      location: true,
+      eventImage: true,
+      promotion: true,
+      ticket: true
+    }
+  });
 }
