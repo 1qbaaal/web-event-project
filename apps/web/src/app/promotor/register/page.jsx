@@ -13,7 +13,7 @@ export default function PromotorRegisterPage(){
 				username:"",
 				email:"",
 				password:"",
-				roleId: ""
+				roleId: "2"
 							
 			}}
 			onSubmit={(values) => {

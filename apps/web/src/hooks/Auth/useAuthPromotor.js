@@ -1,7 +1,7 @@
 import { toast } from "react-toastify";
 import { useAuthMutation } from "../../api/useAuthMutation";
 import { setCookie } from "../../utils/cookiesHelper";
-import {useRouter} from "next/navigation"
+import { useRouter } from "next/navigation"
 
 
 export const useAuthLogin =()=>{
@@ -11,7 +11,7 @@ export const useAuthLogin =()=>{
             setCookie(res.data.accesstoken)
             toast.success(res.data.message)
             console.log(res)
-            router.push ('/user/dashboard')
+            router.push ('/promotor/dashboard')
         },
         onError:(err)=>{
             

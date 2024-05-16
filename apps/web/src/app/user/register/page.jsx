@@ -1,6 +1,8 @@
 'use client'
-import { Formik,Form,Field } from "formik"
+import { Formik,Form,Field,ErrorMessage} from "formik"
 import { useCreateUser } from "@/hooks/useCreateUserMutation"
+import {registerSchema} from "../../../support/schema/registerSchema"
+
 
 export default function UserRegisterPage() {
 	const {mutationCreateUser} = useCreateUser()
@@ -14,6 +16,7 @@ export default function UserRegisterPage() {
 				roleId: ""
 							
 			}}
+			validationSchema={registerSchema}
 			onSubmit={(values) => {
 				console.log(values)
 				mutationCreateUser({
@@ -33,18 +36,22 @@ export default function UserRegisterPage() {
 				<div class="mb-4">
 					<label for="full_name" class="block text-gray-700 font-bold mb-2">Nama Lengkap</label>
 					<Field type="text" id="full_name" name="full_name" required class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
+					<ErrorMessage name="full_name"/>
 				</div>
 				<div class="mb-4">
 					<label for="username" class="block text-gray-700 font-bold mb-2">Nama Pengguna</label>
 					<Field type="text" id="username" name="username" required class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
+					<ErrorMessage name="username"/>
 				</div>
 				<div class="mb-4">
 					<label for="email" class="block text-gray-700 font-bold mb-2">Email</label>
 					<Field type="email" id="email" name="email" required class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
+					<ErrorMessage name="email"/>
 				</div>
 				<div class="mb-4">
 					<label for="password" class="block text-gray-700 font-bold mb-2">Kata Sandi</label>
 					<Field type="password" id="password" name="password" required class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
+					<ErrorMessage name="password"/>
 				</div>
 				<div class="mb-4">
 					<label for="confirm_password" class="block text-gray-700 font-bold mb-2">Kode Referal</label>

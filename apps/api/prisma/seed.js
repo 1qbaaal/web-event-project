@@ -7,6 +7,7 @@ const dataUser = [
     email: 'iqbal@loket.com',
     password: '123456',
     roleId: 1
+
   },
   {
     email: 'barent@loket.com',

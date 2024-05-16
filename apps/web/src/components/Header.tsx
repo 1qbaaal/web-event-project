@@ -2,14 +2,17 @@
 import { AiOutlineSchedule } from 'react-icons/ai';
 import { ImTicket } from 'react-icons/im';
 import Link from 'next/link';
+import { Toast } from 'react-toastify/dist/components';
+import  {userContext} from '../support/context/userContext'
+import { useContext,useEffect } from 'react';
+import {store}from "../redux/store"
+
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { MdClose } from 'react-icons/md';
 
+
 export const Header = () => {
-  // const router =useRouter()
-  // const handleClick = () => {
-  //   router.push('/user/login')
-  // }
+  
   return (
     <div>
       <div className="lg:hidden">

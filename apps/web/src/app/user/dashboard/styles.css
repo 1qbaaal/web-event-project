@@ -1,0 +1,18 @@
+/* styles/Dashboard.module.css */
+.dashboard {
+    text-align: center;
+    padding: 20px;
+    padding-top: 100px;
+  }
+  
+  .chartContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  .chart {
+    flex: 1 1 300px;
+    margin: 20px;
+  }
+  
