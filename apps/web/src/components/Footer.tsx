@@ -14,7 +14,7 @@ export const Footer = () => {
               className="flex justify-center space-x-3 lg:justify-start"
             >
               <div className="flex items-center justify-center w-10 h-10">
-                <ImTicket className="w-10 h-10 text-blue-600" />
+                <ImTicket className="w-10 h-10 text-[#70942E]" />
               </div>
               <span className="self-center text-2xl font-semibold text-black">
                 ticketowl.com
@@ -114,7 +114,7 @@ export const Footer = () => {
           </div>
         </div>
         <div className="py-6 text-sm text-center text-black w-full">
-          © 1968 Company Co. All rights reserved.
+          © 2024 PWDK-BSD Mini Project. All rights reserved.
         </div>
       </footer>
     </div>

@@ -1,17 +1,16 @@
 import { createEventController } from '@/controllers/EventController/create';
 import { Router } from 'express';
-import { getEventByParams } from '@/controllers/EventController/get';
+import { getAllEventResult, getEventByParams } from '@/controllers/EventController/get';
 import { UpdateEventAndImage } from '@/controllers/EventController/update';
 import { listEventById } from '@/controllers/EventController/list';
 import { deleteEventById } from '@/controllers/EventController/delete';
 import { uploader } from '@/middleware/Uploader';
-import { getListCategory } from '@/controllers/EventController/Category/category';
 
 const router = Router();
 
 router.post('/create', uploader, createEventController);
 router.get('/:id', getEventByParams);
-router.get('/', listEventById);
+router.get('/', getAllEventResult);
 router.put('/edit/:id', uploader, UpdateEventAndImage);
 router.delete('/', deleteEventById);
 

@@ -11,18 +11,18 @@ datasource db {
 }
 
 model User {
-  uid        String    @id @default(cuid())
-  email      String
-  password   String
-  createdAt  DateTime  @default(now())
-  updatedAt  DateTime  @updatedAt
-  deletedAt  DateTime?
+  uid         String    @id @default(cuid())
+  email       String
+  password    String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime?
   expiredDate DateTime?
-  roleId     Int
-  role       Role      @relation(fields: [roleId], references: [id])
-  referralId String?   @unique
-  referral   Referral? @relation(fields: [referralId], references: [uid])
-  review     Review[]
+  roleId      Int
+  role        Role      @relation(fields: [roleId], references: [id])
+  referralId  String?   @unique
+  referral    Referral? @relation(fields: [referralId], references: [uid])
+  review      Review[]
 
   @@map("users")
 }
@@ -33,7 +33,7 @@ model Role {
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
-  user User[]
+  user      User[]
 
   @@map("roles")
 }
@@ -48,7 +48,7 @@ model Event {
   endTime     DateTime    @db.Time()
   locationId  Int
   location    Location    @relation(fields: [locationId], references: [id])
-  description String
+  description String      @db.LongText
   eventType   EventType   @relation(fields: [eventTypeId], references: [id])
   eventTypeId Int
   createdAt   DateTime    @default(now())
@@ -115,13 +115,12 @@ model Ticket {
   id          Int       @id @default(autoincrement())
   totalTicket Int
   typeTicket  String
-  price       Decimal   @db.Decimal(10, 2)
+  price       Int
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
   deletedAt   DateTime?
   eventId     Int
   event       Event     @relation(fields: [eventId], references: [id])
-
 
   @@map("tickets")
 }
@@ -162,7 +161,7 @@ model Referral {
   referralCode       String    @default(cuid())
   referralUserReward Int       @default(10000)
   referredUserReward Int       @default(10)
-  points     Int?   @default(0)
+  points             Int?      @default(0)
   expiredDate        DateTime  @db.Date
   createdAt          DateTime  @default(now())
   updatedAt          DateTime  @updatedAt
@@ -171,6 +170,3 @@ model Referral {
 
   @@map("referrals")
 }
-
-
-

@@ -7,9 +7,12 @@ import LocationRouter from './LocationRouter';
 import TypeRouter from './TypeRouter';
 import TicketRouter from './TicketRouter';
 import PromotionRouter from './PromotionRouter';
+import ReviewRouter from './ReviewRouter';
 
 const router = Router();
 router.use(express.json());
+
+router.use('*/image',express.static('src/public/image'))
 
 router.use('/event', EventRouter);
 router.use('/auth', AuthRouter);
@@ -19,5 +22,7 @@ router.use('/location', LocationRouter);
 router.use('/type', TypeRouter);
 router.use('/ticket', TicketRouter)
 router.use('/promotion', PromotionRouter);
+router.use('/review', ReviewRouter)
+
 
 export default router;
